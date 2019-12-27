@@ -1,0 +1,28 @@
+body {
+	background-color: #FFAA66;
+	font-family: "Ubuntu", "Sans-serif";
+	font-weight: bold;
+}
+h1 {
+	color: #008080;
+	font-size: 20pt;
+}
+a {
+	color: black;
+}
+a:hover {
+	color: #008080;
+	transition: color .35s ease;
+}
+.displayArea {
+	display: grid;
+	grid-template-columns: max-content;
+	grid-template-areas: "sidebar mainSection";
+}
+h1, a, p {
+	margin: 0;
+}
+.mainSection {
+	margin: 0 auto;
+	padding: 0 25%;
+}

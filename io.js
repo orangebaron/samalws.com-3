@@ -1,0 +1,2 @@
+otp = alert
+inp = prompt

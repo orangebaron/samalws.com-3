@@ -1,2 +1,0 @@
-otp = alert
-inp = prompt

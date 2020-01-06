@@ -1,6 +1,10 @@
-function digitalOceanRequest(key, addressEnd, callback, requestType = "GET") {
+function digitalOceanRequest(key, addressEnd, callback, errCallback, requestType = "GET") {
 	requ = new XMLHttpRequest()
-	requ.onload = (() => callback(JSON.parse(requ.response)))
+	requ.onload = () => { try {
+		callback(JSON.parse(requ.response))
+	} catch (err) {
+		errCallback(err)
+	}}
 	requ.open(requestType, "https://api.digitalocean.com/v2/" + addressEnd)
 	requ.setRequestHeader("Authorization", "Bearer " + key)
 	requ.send()
@@ -18,27 +22,27 @@ function keyValsToAddressEnd(vals) {
 	}
 }
 
-function createDroplet(key) {
+function createDroplet(otp, key) {
 	digitalOceanRequest(key, "snapshots?resource_type=droplet", function (snapshots) {
 		digitalOceanRequest(key, "droplets?" + keyValsToAddressEnd([
 			["name", "mm"],
 			["region", "nyc1"],
 			["size", "s-1vcpu-1gb"],
 			["image", snapshots.snapshots[0].id]
-		]), (_ => {}), "POST")
-	})
+		]), (() => {}), otp, "POST")
+	}, otp)
 }
 
-function showDropletNetworkInfo(otp, key) {
+function showDropletIP(otp, key) {
 	digitalOceanRequest(key, "droplets", function (droplets) {
 		otp(droplets.droplets[0].networks.v4[0].ip_address)
-	})
+	}, otp)
 }
 
-function killAllDroplets(key) {
+function killAllDroplets(otp, key) {
 	digitalOceanRequest(key, "droplets", function (droplets) {
 		droplets.droplets.forEach(function (droplet) {
-			digitalOceanRequest(key, "droplets/" + droplet.id, (_ => {}), "DELETE")
+			digitalOceanRequest(key, "droplets/" + droplet.id, (() => {}), (() => {}), "DELETE")
 		})
-	})
+	}, otp)
 }

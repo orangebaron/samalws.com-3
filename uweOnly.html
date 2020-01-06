@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="io.js"></script>
-		<script src="digitalOcean.js"></script>
-	</head>
 	<body>
-		<input type="text" id="textInp" />
-		<button onclick="eval(document.getElementById('textInp').value)">run</button>
+		<div id="outputSpace"></div>
+		<input type="text" id="cmd" />
+		<button onclick="buttonClick()">run</button>
+		<script src="digitalOcean.js"></script>
+		<script src="uweOnly.js"></script>
 	</body>
 </html>

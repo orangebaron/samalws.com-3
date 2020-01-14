@@ -29,4 +29,9 @@ cmdElement = document.getElementById("cmd")
 inp = prompt
 otp = s => otpSpaceElement.innerHTML += "<p>" + s + "</p>"
 env = {}
-buttonClick = () => env = runCmd(cmdElement.value)(inp, otp, env)
+cmdElement.onkeypress = (e) => {
+	if (e.keyCode == "13") {
+		env = runCmd(cmdElement.value)(inp, otp, env)
+		cmdElement.value = ""
+	}
+}

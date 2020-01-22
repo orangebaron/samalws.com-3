@@ -39,6 +39,12 @@ function showDropletIP(otp, key) {
 	}, otp)
 }
 
+function showNumDroplets(otp, key) {
+	digitalOceanRequest(key, "droplets", function (droplets) {
+		otp(droplets.droplets.length)
+	}, otp)
+}
+
 function killAllDroplets(otp, key) {
 	digitalOceanRequest(key, "droplets", function (droplets) {
 		droplets.droplets.forEach(function (droplet) {

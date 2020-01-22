@@ -10,6 +10,7 @@ funcs = {
 	"setDigOceanKey": setGlobalVarFunc("digitalOceanKey"),
 	"createDroplet": digOceanWrapper(createDroplet),
 	"showDropletIP": digOceanWrapper(showDropletIP),
+	"showNumDroplets": digOceanWrapper(showNumDroplets),
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),

@@ -14,7 +14,7 @@ a:hover {
 	color: #008080;
 	transition: color .35s ease;
 }
-.displayArea {
+#displayArea {
 	display: grid;
 	grid-template-columns: max-content;
 	grid-template-areas: "sidebar mainSection";
@@ -22,7 +22,7 @@ a:hover {
 h1, a, p {
 	margin: 0;
 }
-.mainSection {
+#mainSection {
 	margin: 0 auto;
 	padding: 0 25%;
 }

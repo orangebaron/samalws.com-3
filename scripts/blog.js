@@ -3,9 +3,9 @@ blogRequ = (page) => {
 	xmlRequ("content/" + page + ".md", (requ) => {
 		if (requ.status == 200) {
 			while (true) {
-				try {
+				try { // showdown can be undefined until it loads
 					document.getElementById("blogContent").innerHTML = new showdown.Converter().makeHtml(requ.response)
-					intentionally error here
+					error()
 					break
 				} catch () {}
 			}

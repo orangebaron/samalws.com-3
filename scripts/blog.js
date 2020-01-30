@@ -5,7 +5,6 @@ blogRequ = (page) => {
 			while (true) {
 				try { // showdown can be undefined until it loads
 					document.getElementById("blogContent").innerHTML = new showdown.Converter().makeHtml(requ.response)
-					error()
 					break
 				} catch (_) {}
 			}

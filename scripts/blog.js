@@ -7,7 +7,7 @@ blogRequ = (page) => {
 					document.getElementById("blogContent").innerHTML = new showdown.Converter().makeHtml(requ.response)
 					error()
 					break
-				} catch () {}
+				} catch (_) {}
 			}
 		} else
 			blogRequ(defaultBlogPage)

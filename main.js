@@ -17,7 +17,7 @@ xmlRequ = (url, handler) => {
 	requ.send()
 }
 getPage = (urlToGet) => {
-	xmlRequ("https://samalws.com/pages/" + urlToGet + ".html", (requ) => {
+	xmlRequ("pages/" + urlToGet + ".html", (requ) => {
 		if (requ.status == 200) {
 			addTo = document.getElementById("mainSection")
 			addTo.innerHTML = requ.response

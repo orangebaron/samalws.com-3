@@ -6,7 +6,8 @@ getArg = k => f => (inp, otp, env) => f(inp, otp, env[k])
 getDigOceanArg = getArg("digitalOceanKey")
 digOceanWrapper = f => notChangeEnv(getDigOceanArg(noInp(f)))
 
-funcs = {
+funcs = {}
+while (true) { try { funcs = { // digitalOcean stuff could be undefined at first
 	"setDigOceanKey": setGlobalVarFunc("digitalOceanKey"),
 	"createDroplet": digOceanWrapper(createDroplet),
 	"showDropletIP": digOceanWrapper(showDropletIP),
@@ -14,7 +15,7 @@ funcs = {
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
-}
+}; break } catch (_) {} }
 
 runCmd = cmdText => (inp, otp, env) => {
 	otp("> " + cmdText)

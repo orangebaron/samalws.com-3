@@ -1,18 +1,20 @@
 defaultUrl = "loremIpsum"
-xmlRequ = (url, handler) => {
-	requ = new XMLHttpRequest()
-	requ.onload = () => { handler(requ) }
-	requ.open("GET", url)
-	requ.send()
-}
 fixScript = (elem) => {
-	xmlRequ(elem.src, (requ) => { elem.innerHTML = requ.response })
+	script = document.createElement("script")
+	script.setAttribute("src", elem.src)
+	document.body.appendChild(script)
 }
 replaceScripts = (elem) => {
 	childNodes = elem.childNodes
 	for (i = 0; i < childNodes.length; i++)
 		if (childNodes[i].nodeName == "SCRIPT")
 			fixScript(childNodes[i])
+}
+xmlRequ = (url, handler) => {
+	requ = new XMLHttpRequest()
+	requ.onload = () => { handler(requ) }
+	requ.open("GET", url)
+	requ.send()
 }
 getPage = (urlToGet) => {
 	xmlRequ("https://samalws.com/pages/" + urlToGet + ".html", (requ) => {

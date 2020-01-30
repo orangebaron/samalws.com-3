@@ -5,7 +5,7 @@ blogRequ = (page) => {
 			document.getElementById("blogContent").innerHTML = new showdown.Converter().makeHtml(requ.response)
 		else
 			blogRequ(defaultBlogPage)
-	}
+	})
 }
 
 urlParts = document.URL.split("?", 3)

@@ -1,4 +1,4 @@
-defaultBlogPage = "blogHome"
+defaultBlogPage = "My_Blog"
 blogRequ = (page) => {
 	xmlRequ("content/" + page + ".md", (requ) => {
 		if (requ.status == 200)

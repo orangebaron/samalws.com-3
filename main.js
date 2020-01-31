@@ -1,4 +1,3 @@
-defaultUrl = "loremIpsum"
 fixScript = (elem) => {
 	script = document.createElement("script")
 	script.setAttribute("src", elem.src)
@@ -23,11 +22,11 @@ getPage = (urlToGet) => {
 			addTo.innerHTML = requ.response
 			replaceScripts(addTo)
 		} else
-			getPage(defaultUrl)
+			getPage("notFound")
 	})
 }
 
 urlParts = document.URL.split("?", 2)
-getPage(urlParts.length == 2 ? urlParts[1] : defaultUrl)
+if (urlParts.length == 2) getPage(urlParts[1])
 
 waitFor = (name, done) => window[name] ? done() : setTimeout(() => waitFor(name, done), 100)

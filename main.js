@@ -30,10 +30,4 @@ getPage = (urlToGet) => {
 urlParts = document.URL.split("?", 2)
 getPage(urlParts.length == 2 ? urlParts[1] : defaultUrl)
 
-safeRerun = (f) => {
-	try {
-		f()
-	} catch (_) {
-		setTimeout(() => { safeRerun(f) }, 100)
-	}
-}
+waitFor = (name, done) => window[name] ? done() : setTimeout(() => waitFor(name, done), 100)

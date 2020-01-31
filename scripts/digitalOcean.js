@@ -52,3 +52,5 @@ function killAllDroplets(otp, key) {
 		})
 	}, otp)
 }
+
+digitalOceanLoaded = true

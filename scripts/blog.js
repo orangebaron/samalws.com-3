@@ -1,10 +1,10 @@
+waitFor("showdown", () => {
+
 defaultBlogPage = "My_Blog"
 blogRequ = (page) => {
 	xmlRequ("content/" + page + ".md", (requ) => {
 		if (requ.status == 200) {
-			safeRerun(() => { // showdown can be undefined until it loads
-				document.getElementById("blogContent").innerHTML = new showdown.Converter().makeHtml(requ.response)
-			})
+			document.getElementById("blogContent").innerHTML = new showdown.Converter().makeHtml(requ.response)
 		} else
 			blogRequ(defaultBlogPage)
 	})
@@ -12,3 +12,5 @@ blogRequ = (page) => {
 
 urlParts = document.URL.split("?", 3)
 blogRequ(urlParts.length == 3 ? urlParts[2] : defaultBlogPage)
+
+})

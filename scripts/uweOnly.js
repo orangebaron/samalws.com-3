@@ -1,3 +1,5 @@
+waitFor("digitalOceanLoaded", () => {
+
 setGlobalVarFunc = k => (_, __, env) => Object.assign({}, env, {[k]: env.arg})
 notChangeEnv = f => (inp, otp, env) => { f(inp, otp, env); return env }
 noInp = f => (_, otp, env) => f(otp, env)
@@ -6,8 +8,7 @@ getArg = k => f => (inp, otp, env) => f(inp, otp, env[k])
 getDigOceanArg = getArg("digitalOceanKey")
 digOceanWrapper = f => notChangeEnv(getDigOceanArg(noInp(f)))
 
-funcs = {}
-safeRerun(() => { funcs = { // digitalOcean stuff could be undefined at first
+funcs = {
 	"setDigOceanKey": setGlobalVarFunc("digitalOceanKey"),
 	"createDroplet": digOceanWrapper(createDroplet),
 	"showDropletIP": digOceanWrapper(showDropletIP),
@@ -15,7 +16,7 @@ safeRerun(() => { funcs = { // digitalOcean stuff could be undefined at first
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
-}})
+}
 
 runCmd = cmdText => (inp, otp, env) => {
 	otp("> " + cmdText)
@@ -37,3 +38,5 @@ cmdElement.onkeypress = (e) => {
 		cmdElement.value = ""
 	}
 }
+
+})

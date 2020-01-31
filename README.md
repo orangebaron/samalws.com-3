@@ -1,6 +1,13 @@
 # samalws.com-3
 HOW ITLL WORK:
 - single page that loads other stuff on startup
-- URL = samalws.com?[page]/[optional extra data]
+- URL = samalws.com?[page]
 - js script will pull page from pages/[page].html
-- optional extra data: if i do a blog or something, [page].html will have a link to the post in it
+
+# TODO
+- make cross site scripting not work
+- resume, projects, thoughts on, links
+- rename uwe only?
+- ssh and ftp
+- git
+- web editor

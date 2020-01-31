@@ -27,6 +27,6 @@ getPage = (urlToGet) => {
 }
 
 urlParts = document.URL.split("?", 2)
-if (urlParts.length == 2) getPage(urlParts[1])
+if (urlParts.length == 2 && urlParts[1] != "") getPage(urlParts[1])
 
 waitFor = (name, done) => window[name] ? done() : setTimeout(() => waitFor(name, done), 100)

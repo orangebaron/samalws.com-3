@@ -3,25 +3,32 @@ body {
 	font-family: "arial", "sans-serif";
 	font-weight: bold;
 }
-h1 {
+#displayArea {
+	display: grid;
+	grid-template-columns: max-content;
+	grid-template-areas: "_ __";
+}
+#mainSection {
+	padding-left: 10%;
+}
+
+h1, h2 {
 	color: #008080;
+}
+h1 {
 	font-size: 20pt;
 }
+h2 {
+	font-size: 15pt;
+}
+h1, h2, a, p, ul {
+	margin: 0;
+}
+
 a {
 	color: black;
 }
 a:hover {
 	color: #008080;
 	transition: color .35s ease;
-}
-#displayArea {
-	display: grid;
-	grid-template-columns: max-content;
-	grid-template-areas: "_ __";
-}
-h1, a, p {
-	margin: 0;
-}
-#mainSection {
-	padding-left: 10%;
 }

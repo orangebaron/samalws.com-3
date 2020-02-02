@@ -6,8 +6,7 @@ HOW ITLL WORK:
 
 # TODO
 - make cross site scripting not work
-- resume, projects, thoughts on, links
-- rename uwe only?
+- projects, thoughts on, links
 - ssh and ftp
+- pgp
 - git
-- web editor

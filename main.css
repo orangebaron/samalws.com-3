@@ -1,9 +1,8 @@
 body {
 	background-color: #FFAA66;
-	font-family: "arial", "sans-serif";
+	font-family: sans-serif;
 	font-weight: bold;
-}
-#displayArea {
+
 	display: grid;
 	grid-template-columns: max-content;
 	grid-template-areas: "_ __";

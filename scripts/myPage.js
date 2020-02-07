@@ -1,10 +1,12 @@
-// depends on: scripts/digitalOcean.js
+// depends on: scripts/digitalOcean.js, scripts/fs.js, scripts/git.js
 
-waitFor("digitalOceanLoaded", () => {
+waitForMultiple(["digitalOceanLoaded", "fsLoaded", "gitLoaded"], () => {
 
 setGlobalVarFunc = k => (_, __, env) => Object.assign({}, env, {[k]: env.arg})
 notChangeEnv = f => (inp, otp, env) => { f(inp, otp, env); return env }
 noInp = f => (_, otp, env) => f(otp, env)
+inpOnly = f => (inp, _, __) => f(inp)
+noEnv = f => (inp, otp, _) => f(inp, otp)
 getArg = k => f => (inp, otp, env) => f(inp, otp, env[k])
 
 getDigOceanArg = getArg("digitalOceanKey")
@@ -16,6 +18,8 @@ funcs = {
 	"showDropletIP": digOceanWrapper(showDropletIP),
 	"showNumDroplets": digOceanWrapper(showNumDroplets),
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
+	"ls": noEnv("ls"),
+	"gitClone": inpOnly("gitClone"),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
 }

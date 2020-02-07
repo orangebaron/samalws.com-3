@@ -30,3 +30,4 @@ urlParts = document.URL.split("?")
 if (urlParts.length == 2 && urlParts[1] != "") getPage(urlParts[1])
 
 waitFor = (name, done) => window[name] ? done() : setTimeout(() => waitFor(name, done), 100)
+waitForMultiple = (names, done) => names.length == 0 ? done() : waitFor(names[0], () => waitForMultiple(names.slice(1), done))

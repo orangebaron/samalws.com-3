@@ -1,3 +1,5 @@
+// depends on: scripts/digitalOcean.js
+
 waitFor("digitalOceanLoaded", () => {
 
 setGlobalVarFunc = k => (_, __, env) => Object.assign({}, env, {[k]: env.arg})

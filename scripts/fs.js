@@ -1,6 +1,6 @@
 // depends on: https://unpkg.com/@isomorphic-git/lightning-fs
 
-waitFor("LightningFs", () => {
+waitFor("LightningFS", () => {
 
 window.fs = new LightningFS('fs')
 window.pfs = window.fs.promises

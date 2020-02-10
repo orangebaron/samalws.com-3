@@ -4,10 +4,11 @@ waitForMultiple(["digitalOceanLoaded", "fsLoaded", "gitLoaded"], () => {
 
 setGlobalVarFunc = k => (_, __, env) => Object.assign({}, env, {[k]: env.arg})
 notChangeEnv = f => (inp, otp, env) => { f(inp, otp, env); return env }
-noInp = f => (_, otp, env) => f(otp, env)
-inpOnly = f => (inp, _, __) => f(inp)
 noEnv = f => (inp, otp, _) => f(inp, otp)
 getArg = k => f => (inp, otp, env) => f(inp, otp, env[k])
+onlyLookAtArg = f => notChangeEnv(getArg("arg")(f))
+noInp = f => (_, otp, env) => f(otp, env)
+noIO = f => (_, __, env) => f(env)
 
 getDigOceanArg = getArg("digitalOceanKey")
 digOceanWrapper = f => notChangeEnv(getDigOceanArg(noInp(f)))
@@ -18,8 +19,8 @@ funcs = {
 	"showDropletIP": digOceanWrapper(showDropletIP),
 	"showNumDroplets": digOceanWrapper(showNumDroplets),
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
-	"ls": noEnv(ls),
-	"gitClone": inpOnly(gitClone),
+	"ls": noInp(onlyLookAtArg(ls)),
+	"gitClone": noIO(onlyLookAtArg(gitClone)),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
 }

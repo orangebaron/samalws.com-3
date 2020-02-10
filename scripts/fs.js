@@ -5,7 +5,7 @@ waitFor("LightningFS", () => {
 window.fs = new LightningFS('fs')
 window.pfs = window.fs.promises
 
-window.ls = (inp, otp) => pfs.readdir(inp).then(otp)
+window.ls = (otp, arg) => pfs.readdir(arg).then(otp)
 
 window.fsLoaded = true
 

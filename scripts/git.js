@@ -4,7 +4,7 @@ waitForMultiple(["fsLoaded", "git"], () => {
 
 git.plugins.set('fs', window.fs)
 
-window.gitClone = (inp) => git.clone({ dir: inp[0], url: inp[1] })
+window.gitClone = (inp) => { console.log(inp); git.clone({ dir: inp[0], url: inp[1] }) }
 
 window.gitLoaded = true
 

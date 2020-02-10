@@ -19,8 +19,8 @@ funcs = {
 	"showDropletIP": digOceanWrapper(showDropletIP),
 	"showNumDroplets": digOceanWrapper(showNumDroplets),
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
-	"ls": noInp(onlyLookAtArg(ls)),
-	"gitClone": noIO(onlyLookAtArg(gitClone)),
+	"ls": onlyLookAtArg(noInp(ls)),
+	"gitClone": onlyLookAtArg(noIO(gitClone)),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
 }

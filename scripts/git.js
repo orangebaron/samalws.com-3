@@ -4,8 +4,7 @@ waitForMultiple(["fsLoaded", "git"], () => {
 
 git.plugins.set('fs', window.fs)
 
-urlPrefix = "https://cors-anywhere.herokuapp.com/"
-fixUrl = (obj) => Object.assign({}, obj, {"url": urlPrefix + obj.url})
+addProxy = (obj) => Object.assign({}, obj, {corsProxy: "https://cors.isomorphic-git.org"})
 
 window.gitClone = (arg) => git.clone(fixUrl(arg))
 

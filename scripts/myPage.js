@@ -30,7 +30,7 @@ runCmd = cmdText => (inp, otp, env) => {
 	spaceIndex = cmdText.indexOf(" ")
 	hasSpace = spaceIndex != -1
 	cmd = hasSpace ? cmdText.substring(0, spaceIndex) : cmdText
-	arg = hasSpace ? eval(cmdText.substring(spaceIndex + 1)) : undefined
+	arg = hasSpace ? eval("(" + cmdText.substring(spaceIndex + 1) + ")") : undefined
 	return funcs[cmd](inp, otp, Object.assign({}, env, {"arg": arg}))
 }
 

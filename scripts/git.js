@@ -6,7 +6,7 @@ git.plugins.set('fs', window.fs)
 
 addProxy = (obj) => Object.assign({}, obj, {corsProxy: "https://cors.isomorphic-git.org"})
 
-window.gitClone = (arg) => git.clone(fixUrl(arg))
+window.gitClone = (arg) => git.clone(addProxy(arg))
 
 window.gitLoaded = true
 

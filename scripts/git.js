@@ -7,7 +7,7 @@ git.plugins.set("pgp", window.pgp) //TODO: window. necessary?
 
 addProxy = (obj) => Object.assign({}, obj, {corsProxy: "https://cors.isomorphic-git.org"})
 
-window.gitFunc = (otp, arg) => git[arg[0]](addProxy(arg[1])).then(otp)
+window.gitFunc = (otp, arg) => git[arg[0]](addProxy(arg[1])).then(x => x && otp(x))
 
 window.gitLoaded = true
 

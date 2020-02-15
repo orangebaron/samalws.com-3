@@ -5,9 +5,9 @@ waitForMultiple(["fsLoaded", "git", "pgp"], () => {
 git.plugins.set("fs", window.fs)
 git.plugins.set("pgp", window.pgp) //TODO: window. necessary?
 
-addProxy = (obj) => Object.assign({}, obj, {corsProxy: "https://cors.isomorphic-git.org"})
+fixGitArgs = (env, arg) => Object.assign({}, obj, {corsProxy: "https://cors.isomorphic-git.org", dir: window.dir, signingKey: env.gitKey})
 
-window.gitFunc = (otp, arg) => git[arg[0]](addProxy(arg[1])).then(x => otp(JSON.stringify(x) || "done"))
+window.gitFunc = (otp, env) => git[env.arg[0]](fixGitArgs(env, env.arg[1])).then(x => otp(JSON.stringify(x) || "done"))
 
 window.gitLoaded = true
 

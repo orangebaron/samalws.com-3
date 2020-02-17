@@ -19,7 +19,6 @@ funcs = {
 	"showNumDroplets": digOceanWrapper(showNumDroplets),
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
 	"cd": onlyLookAtArg(noInp(cd)),
-	"cd+": onlyLookAtArg(noInp(cdPlus)),
 	"ls": onlyLookAtArg(noInp(ls)),
 	"rm": onlyLookAtArg(noInp(rm)),
 	"setGitKey": setGlobalVarFunc("gitKey"),

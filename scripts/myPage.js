@@ -22,7 +22,6 @@ funcs = {
 	"cd+": onlyLookAtArg(noInp(cdPlus)),
 	"ls": onlyLookAtArg(noInp(ls)),
 	"rm": onlyLookAtArg(noInp(rm)),
-	"rmR": onlyLookAtArg(noInp(rmDir)),
 	"setGitKey": setGlobalVarFunc("gitKey"),
 	"git": noInp(gitFunc),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),

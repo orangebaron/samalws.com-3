@@ -2,7 +2,6 @@
 
 waitForMultiple(["digitalOceanLoaded", "fsLoaded", "gitLoaded"], () => {
 
-setGlobalVarFunc = k => (_, __, env) => Object.assign({}, env, {[k]: env.arg})
 notChangeEnv = f => (inp, otp, env) => { f(inp, otp, env); return env }
 noEnv = f => (inp, otp, _) => f(inp, otp)
 getArg = k => f => (inp, otp, env) => f(inp, otp, env[k])
@@ -13,7 +12,6 @@ getDigOceanArg = getArg("digitalOceanKey")
 digOceanWrapper = f => notChangeEnv(getDigOceanArg(noInp(f)))
 
 funcs = {
-	"setDigOceanKey": setGlobalVarFunc("digitalOceanKey"),
 	"createDroplet": digOceanWrapper(createDroplet),
 	"showDropletIP": digOceanWrapper(showDropletIP),
 	"showNumDroplets": digOceanWrapper(showNumDroplets),
@@ -22,8 +20,10 @@ funcs = {
 	"ls": notChangeEnv(noInp(ls)),
 	"rm": notChangeEnv(noInp(rm)),
 	"setGitKey": setGlobalVarFunc("gitKey"),
-	"git": noInp(gitFunc),
+	"git": notChangeEnv(noInp(gitFunc)),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
+	"setVar": (_, __, env) => Object.assign({}, env, {[env.arg[0]]: env.arg[1]}),
+	"promptVar": (inp, _, env) => Object.assign({}, env, {[env.arg]: inp()}),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
 }
 

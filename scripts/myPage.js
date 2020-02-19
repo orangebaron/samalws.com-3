@@ -19,7 +19,6 @@ funcs = {
 	"cd": cd,
 	"ls": notChangeEnv(noInp(ls)),
 	"rm": notChangeEnv(noInp(rm)),
-	"setGitKey": setGlobalVarFunc("gitKey"),
 	"git": notChangeEnv(noInp(gitFunc)),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"setVar": (_, __, env) => Object.assign({}, env, {[env.arg[0]]: env.arg[1]}),

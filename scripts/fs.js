@@ -2,8 +2,8 @@
 
 waitFor("LightningFS", () => {
 
-window.fs = new LightningFS('fs')
-window.pfs = window.fs.promises
+fs = new LightningFS('fs')
+pfs = fs.promises
 
 processFsArg = env => (env.dir || "") + "/" + (env.arg || "")
 processFsArgNum = (env, argNum) => (env.dir || "") + "/" + (env.arg[argNum] || "")
@@ -15,6 +15,6 @@ mv = (otp, env) => pfs.rename(processFsArgNum(env,0), processFsArgNum(env,1)).th
 write = (otp, env) => pfs.writeFile(processFsArgNum(env,0), env.arg[1], "utf8").then(otp)
 cat = (otp, env) => pfs.readFile(processFsArg(env), "utf8").then(otp)
 
-window.fsLoaded = true
+fsLoaded = true
 
 })

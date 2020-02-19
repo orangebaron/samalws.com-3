@@ -32,7 +32,12 @@ runCmd = cmdText => (inp, otp, env) => {
 	hasSpace = spaceIndex != -1
 	cmd = hasSpace ? cmdText.substring(0, spaceIndex) : cmdText
 	arg = hasSpace ? eval("(" + cmdText.substring(spaceIndex + 1) + ")") : undefined
-	return funcs[cmd](inp, otp, Object.assign({}, env, {"arg": arg}))
+	try {
+		return funcs[cmd](inp, otp, Object.assign({}, env, {"arg": arg}))
+	} catch (e) {
+		otp(e)
+		return env
+	}
 }
 
 otpSpaceElement = document.getElementById("outputSpace")

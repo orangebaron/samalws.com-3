@@ -1,6 +1,6 @@
 // depends on: scripts/fs.js, scripts/pgp.js, and https://unpkg.com/isomorphic-git
 
-waitForMultiple(["fsLoaded", "git", "pgp"], () => {
+waitForMultiple(["fsLoaded", "pgpLoaded", "git"], () => {
 
 git.plugins.set("fs", fs)
 git.plugins.set("pgp", {sign: pgpSign, verify: pgpVerify})

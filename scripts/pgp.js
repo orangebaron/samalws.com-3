@@ -10,7 +10,7 @@ pgpSign = msg => openpgp.key.readArmored(msg.secretKey).then(pk => pk.keys[0].de
 		armor: true
 	}).then(x => x)))
 
-filterValidInvalid = sigs => { valid: sigs.filter(x => x.valid), invalid: sigs.filter(x => !x.valid) }
+filterValidInvalid = sigs => ({ valid: sigs.filter(x => x.valid), invalid: sigs.filter(x => !x.valid) })
 
 pgpVerify = msg => openpgp.signature.readArmored(msg.signature).then(sig =>
 	openpgp.verify({

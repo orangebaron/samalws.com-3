@@ -2,30 +2,22 @@
 
 waitForMultiple(["fsLoaded", "openpgp"], () => {
 
-async pgpSign(msg) {
-	const privateKeys = (await openpgp.key.readArmored(msg.secretKey)).keys
-	await privateKeys[0].decrypt(window.env.keyPass)
-	return await openpgp.sign({
+pgpSign = msg => openpgp.key.readArmored(msg.secretKey).then(pk => pk.keys[0].decrypt(window.env.keyPass).then(() =>
+	openpgp.sign({
 		message: openpgp.message.fromBinary(openpgp.util.encode_utf8(msg.payload)),
-		privateKeys,
+		privateKeys: pk.keys,
 		detached: true,
 		armor: true
-	})
-}
+	}).then(x => x)))
 
-async pgpVerify (msg) {
-	let returned = await openpgp.verify({
+filterValidInvalid = sigs => { valid: sigs.filter(x => x.valid), invalid: sigs.filter(x => !x.valid) }
+
+pgpVerify = msg => openpgp.signature.readArmored(msg.signature).then(sig =>
+	openpgp.verify({
 		message: openpgp.message.fromBinary(openpgp.util.encode_utf8(msg.payload)),
-		signature: await openpgp.signature.readArmored(msg.signature),
+		signature: sig,
 		publicKeys: (await openpgp.key.readArmored(msg.publicKey)).keys
-	})
-	let invalid = []
-	let valid = []
-	for (let sig of returned.signatures) {
-		(sig.valid ? valid : invalid).push(sig.keyid.toHex())
-	}
-	return { valid, invalid }
-}
+	}).then(filterValidInvalid))
 
 pgpLoaded = true
 

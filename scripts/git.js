@@ -1,9 +1,9 @@
-// depends on: scripts/fs.js, https://@isomorphic-git/pgp-plugin, and https://unpkg.com/isomorphic-git
+// depends on: scripts/fs.js, scripts/pgp.js, and https://unpkg.com/isomorphic-git
 
 waitForMultiple(["fsLoaded", "git", "pgp"], () => {
 
-git.plugins.set("fs", window.fs)
-git.plugins.set("pgp", window.pgp) //TODO: window. necessary?
+git.plugins.set("fs", fs)
+git.plugins.set("pgp", {sign: pgpSign, verify: pgpVerify})
 
 fixGitArgs = (env, arg) => Object.assign({}, arg, {corsProxy: "https://cors.isomorphic-git.org", dir: env.dir, signingKey: env.gitKey})
 

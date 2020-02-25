@@ -22,6 +22,8 @@ funcs = {
 	"mv": notChangeEnv(noInp(mv)),
 	"write": notChangeEnv(noInp(write)),
 	"cat": notChangeEnv(noInp(cat)),
+	"decryptFile": notChangeEnv(noInp(decryptFile)),
+	"encryptFile": notChangeEnv(noInp(encryptFile)),
 	"git": notChangeEnv(noInp(gitFunc)),
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"setVar": (_, __, env) => Object.assign({}, env, {[env.arg[0]]: env.arg[1]}),

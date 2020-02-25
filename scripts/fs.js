@@ -15,7 +15,10 @@ mv = (otp, env) => pfs.rename(processFsArgNum(env,0), processFsArgNum(env,1)).th
 write = (otp, env) => pfs.writeFile(processFsArgNum(env,0), env.arg[1], "utf8").then(otp)
 cat = (otp, env) => pfs.readFile(processFsArg(env), "utf8").then(otp)
 encryptFile = (otp, env) => cat(payload => pgpEncrypt({publicKey: env.publicKey, payload}).then
-	(text => write(otp, Object.assign({}, env, {arg: [env.arg, text.data]}))), env)
+	(text => write(otp, Object.assign({}, env, {arg: [env.arg, text.message.packets.write()]}))), env)
+decryptFile = (otp, env) => pfs.readFile(processFsArg(env)).then(
+	payload => pgpDecrypt({secretKey: env.privateKey, payload}).then
+	(text => write(otp, Object.assign({}, env, {arg: [env.arg, text.data]}))))
 
 fsLoaded = true
 

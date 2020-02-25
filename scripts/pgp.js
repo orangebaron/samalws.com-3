@@ -20,9 +20,9 @@ pgpVerify = msg => openpgp.signature.readArmored(msg.signature).then(sig => open
 	}).then(filterValidInvalid)))
 
 pgpEncrypt = msg => openpgp.key.readArmored(msg.publicKey).then(pk =>
-	openpgp.decrypt({
+	openpgp.encrypt({
 		message: openpgp.message.fromBinary(openpgp.util.encode_utf8(msg.payload)),
-		privateKeys: pk.keys
+		publicKeys: pk.keys
 	}))
 
 pgpDecrypt = msg => openpgp.key.readArmored(msg.secretKey).then(pk => pk.keys[0].decrypt(window.env.keyPass).then(() =>

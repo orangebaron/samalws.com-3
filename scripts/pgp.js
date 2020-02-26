@@ -1,6 +1,6 @@
-// depends on: scripts/fs.js and https://unpkg.com/openpgp
+// depends on: https://unpkg.com/openpgp
 
-waitForMultiple(["fsLoaded", "openpgp"], () => {
+wait("openpgp", () => {
 
 pgpSign = msg => openpgp.key.readArmored(msg.secretKey).then(pk => pk.keys[0].decrypt(window.env.keyPass).then(() =>
 	openpgp.sign({

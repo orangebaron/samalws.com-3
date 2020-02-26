@@ -12,6 +12,7 @@ getDigOceanArg = getArg("digitalOceanKey")
 digOceanWrapper = f => notChangeEnv(getDigOceanArg(noInp(f)))
 
 funcs = {
+	"uploadFile": (_, __, env) => uploadFile(env),
 	"createDroplet": digOceanWrapper(createDroplet),
 	"showDropletIP": digOceanWrapper(showDropletIP),
 	"showNumDroplets": digOceanWrapper(showNumDroplets),

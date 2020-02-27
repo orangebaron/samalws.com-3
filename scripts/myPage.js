@@ -12,7 +12,7 @@ funcs = {
 	"promptVar": (inp, _, env) => Object.assign({}, env, {[env.arg]: inp()}),
 	"setEnv": noIO(env => env.arg),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
-	"applyJSONVar": noIO(env => Object.assign({}, env, JSON.parse(env[env.arg]))),
+	"applyJSONVar": noIO(env => Object.assign({}, env, eval("(" + env[env.arg] + ")"))),
 	"clear": notChangeEnv(noIO(_ => document.getElementById("outputSpace").innerHTML = "")),
 }
 

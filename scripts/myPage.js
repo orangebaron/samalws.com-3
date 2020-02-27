@@ -33,7 +33,8 @@ funcs = {
 	"setVar": (_, __, env) => Object.assign({}, env, {[env.arg[0]]: env.arg[1]}),
 	"promptVar": (inp, _, env) => Object.assign({}, env, {[env.arg]: inp()}),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),
-	"clear": (_, __, env) => { document.getElementById("outputSpace").innerHTML = ""; return env },
+	"applyJSONVar": noIO(env => Object.assign({}, env, env[env.arg])),
+	"clear": notChangeEnv(noIO(_ => document.getElementById("outputSpace").innerHTML = "")),
 }
 
 runCmd = cmdText => (inp, otp, env) => {

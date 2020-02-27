@@ -1,6 +1,6 @@
 // depends on: https://unpkg.com/openpgp
 
-wait("openpgp", () => {
+waitFor("openpgp", () => {
 
 pgpSign = msg => openpgp.key.readArmored(msg.secretKey).then(pk => pk.keys[0].decrypt(window.env.keyPass).then(() =>
 	openpgp.sign({

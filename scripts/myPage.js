@@ -7,22 +7,25 @@ noEnv = f => (inp, otp, _) => f(inp, otp)
 getArg = k => f => (inp, otp, env) => f(inp, otp, env[k])
 onlyLookAtArg = f => notChangeEnv(getArg("arg")(f))
 noInp = f => (_, otp, env) => f(otp, env)
+noIO = f => (_, __, env) => f(env)
 
 getDigOceanArg = getArg("digitalOceanKey")
 digOceanWrapper = f => notChangeEnv(getDigOceanArg(noInp(f)))
 
 funcs = {
-	"uploadFile": (_, __, env) => uploadFile(env),
+	"uploadFile": noIO(uploadFile),
 	"createDroplet": digOceanWrapper(createDroplet),
 	"showDropletIP": digOceanWrapper(showDropletIP),
 	"showNumDroplets": digOceanWrapper(showNumDroplets),
 	"killAllDroplets": digOceanWrapper(killAllDroplets),
 	"cd": cd,
 	"ls": notChangeEnv(noInp(ls)),
-	"rm": notChangeEnv(noInp(rm)),
-	"mv": notChangeEnv(noInp(mv)),
-	"write": notChangeEnv(noInp(write)),
+	"rm": notChangeEnv(noIO(rm)),
+	"mv": notChangeEnv(noIO(mv)),
+	"write": notChangeEnv(noIO(write)),
 	"cat": notChangeEnv(noInp(cat)),
+	"fileToVar": noIO(fileToVar),
+	"varToFile": notChangeEnv(noIO(varToFile)),
 	"decryptFile": notChangeEnv(noInp(decryptFile)),
 	"encryptFile": notChangeEnv(noInp(encryptFile)),
 	"git": notChangeEnv(noInp(gitFunc)),
@@ -54,8 +57,16 @@ otp = s => otpSpaceElement.innerHTML += "<p>" + s + "</p>"
 env = {}
 cmdElement.onkeypress = (e) => {
 	if (e.keyCode == "13") {
-		env = runCmd(cmdElement.value)(inp, otp, env)
-		cmdElement.value = ""
+		newEnv = runCmd(cmdElement.value)(inp, otp, env)
+		if (newEnv.constructor.name == "Promise")
+			newEnv.then(val => {
+				env = val
+				cmdElement.value = ""
+			})
+		else {
+			env = newEnv
+			cmdElement.value = ""
+		}
 	}
 }
 

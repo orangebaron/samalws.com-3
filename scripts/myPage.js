@@ -8,6 +8,7 @@ noIO = f => (_, __, env) => f(env)
 funcs = {
 	"showEnv": notChangeEnv((_, otp, env) => otp(JSON.stringify(env))),
 	"setVar": (_, __, env) => Object.assign({}, env, {[env.arg[0]]: env.arg[1]}),
+	"showVar": noInp(notChangeEnv((otp, env) => otp(env[env.arg]))),
 	"promptVar": (inp, _, env) => Object.assign({}, env, {[env.arg]: inp()}),
 	"setEnv": noIO(env => env.arg),
 	"help": notChangeEnv((_, otp, __) => otp(Object.keys(funcs))),

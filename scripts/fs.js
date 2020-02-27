@@ -19,7 +19,7 @@ funcs.encryptFile = notChangeEnv(noInp((otp, env) => cat(payload => pgpEncrypt({
 funcs.decryptFile = notChangeEnv(noInp((otp, env) => pfs.readFile(processFsArg(env)).then(
 	payload => pgpDecrypt({secretKey: env.privateKey, payload}).then
 	(text => write(otp, Object.assign({}, env, {arg: [env.arg, text.data]}))))))
-funcs.fileToVar = noIO(env => pfs.readFile(processFsArgNum(env,0), "utf8").then(otp).then(content => Object.assign({}, env, {[env.arg[1]]: content})))
+funcs.fileToVar = noIO(env => pfs.readFile(processFsArgNum(env,0), "utf8").then(content => Object.assign({}, env, {[env.arg[1]]: content})))
 funcs.varToFile = notChangeEnv(noIO(env => pfs.writeFile(processFsArgNum(env,0), env[env.arg[1]], "utf8")))
 
 fsLoaded = true

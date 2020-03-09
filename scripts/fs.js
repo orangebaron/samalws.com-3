@@ -14,11 +14,11 @@ funcs.rm = notChangeEnv(noIO(env => pfs.unlink(processFsArg(env))))
 funcs.mv = notChangeEnv(noIO(env => pfs.rename(processFsArgNum(env,0), processFsArgNum(env,1))))
 funcs.write = notChangeEnv(noIO(env => pfs.writeFile(processFsArgNum(env,0), env.arg[1], "utf8")))
 funcs.cat = notChangeEnv(noInp((otp, env) => pfs.readFile(processFsArg(env), "utf8").then(otp)))
-funcs.encryptFile = notChangeEnv(noInp((otp, env) => cat(payload => pgpEncrypt({publicKey: env.publicKey, payload}).then
-	(text => write(otp, Object.assign({}, env, {arg: [env.arg, text.message.packets.write()]}))), env)))
+funcs.encryptFile = notChangeEnv(noInp((otp, env) => funcs.cat(payload => pgpEncrypt({publicKey: env.publicKey, payload}, env).then
+	(text => funcs.write(otp, Object.assign({}, env, {arg: [env.arg, text.message.packets.write()]}))), env)))
 funcs.decryptFile = notChangeEnv(noInp((otp, env) => pfs.readFile(processFsArg(env)).then(
 	payload => pgpDecrypt({secretKey: env.privateKey, payload}).then
-	(text => write(otp, Object.assign({}, env, {arg: [env.arg, text.data]}))))))
+	(text => funcs.write(undefined, otp, Object.assign({}, env, {arg: [env.arg, text.data]}))))))
 funcs.fileToVar = noIO(env => pfs.readFile(processFsArgNum(env,0), "utf8").then(content => Object.assign({}, env, {[env.arg[1]]: content})))
 funcs.varToFile = notChangeEnv(noIO(env => pfs.writeFile(processFsArgNum(env,0), env[env.arg[1]], "utf8")))
 

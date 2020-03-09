@@ -30,12 +30,31 @@ runCmd = cmdText => (inp, otp, env) => {
 	}
 }
 
+inpElement = document.getElementById("inp")
+inpListener = undefined
+inp = listener => {
+	inpElement.setAttribute("placeholder", "waiting")
+	promise = new Promise((f, _) => { inpListener = f })
+	return promise
+}
+inpElement.onKeyPress = e => {
+	if (e.keyCode == "13") {
+		inpElement.setAttribute("placeholder", "")
+		// listener could take time
+		oldVal = inpElement.value
+		oldListener = inpListener
+		inpElement.value = ""
+		inpListener = undefined
+		oldListener(oldVal)
+	}
+}
+
 otpSpaceElement = document.getElementById("outputSpace")
 cmdElement = document.getElementById("cmd")
 inp = prompt
 otp = s => otpSpaceElement.innerHTML += "<p>" + s + "</p>"
 env = {}
-cmdElement.onkeypress = (e) => {
+cmdElement.onkeypress = e => {
 	if (e.keyCode == "13") {
 		newEnv = runCmd(cmdElement.value)(inp, otp, env)
 		if (newEnv.constructor.name == "Promise")

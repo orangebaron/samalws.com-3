@@ -11,8 +11,9 @@ proxiedRequest = (url, otp) => {
 	requ.send()
 }
 
-funcs.ssh = (otp, env) => proxiedRequest(env.serverUrl + ":880/" + env.arg + "~", otp)
-funcs.ftp = (otp, env) => proxiedRequest(env.serverUrl + ":654", otp)
+funcs.ssh = notChangeEnv(noInp((otp, env) => proxiedRequest(env.serverUrl + ":880/" + env.arg, otp)))
+funcs.ftp = notChangeEnv(noInp((otp, env) => proxiedRequest(env.serverUrl + ":654", otp)))
+funcs.ftpToFile = notChangeEnv(noIO(env => proxiedRequest(env.serverUrl + ":654", response => funcs.write({}, {}, {arg: [env.arg, response]}))))
 
 serverLoaded = true
 

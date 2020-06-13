@@ -1,5 +1,0 @@
-services
-construction?
-cloud rather than local data and computation
-custom mfg, fast delivery
-edu

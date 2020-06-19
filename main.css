@@ -31,3 +31,10 @@ a:hover {
 	color: #008080;
 	transition: color .35s ease;
 }
+
+table {
+	border-collapse: collapse;
+}
+table, tr, th {
+	border: solid black;
+}

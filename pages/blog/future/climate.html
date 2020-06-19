@@ -2,18 +2,6 @@
 <h1>Sketchy Internet Research: Climate</h1>
 <i>(2020-06-04)</i>
 <br />
-<i>NOTE: This is only half-finished at the moment.
-It's a bit janky and is missing some sources and tables.
-Most notably missing is a table comparing different power sources, which ties together much of my argument but isn't really here right now.
-Please don't judge this until it's actually finished. :)
-</i>
-
-<!-- TODOs:
-renewables production data
-missing countries on chart
-make EU and world sections better
-maybe rewrite food part to be per calorie
--->
 
 <p>&emsp;
 A lot of big, broad statements are being said about climate.
@@ -27,6 +15,7 @@ Etc.
 That being said, I think a majority of what I've found is right or almost-right.
 The overall picture seems to be that as green energy tech gets cheaper,
 it'll gain widespread usage just for cost reasons.
+Other options for reducing emissions also exist and can be used if the cheapening doesn't happen.
 Sea level will rise, species will die, and weather will get more extreme,
 but it doesn't seem like there'll be some major disaster that wipes out mankind or nature.
 Anyways, enough intro.
@@ -46,9 +35,9 @@ We'll use this to understand how much things cost.
 I put together a list of CO2 and energy stats by country <a href="?blog/future/climateDataCountries">here</a>.
 (<a href="https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions">2</a>, <a href="https://en.wikipedia.org/wiki/List_of_countries_by_renewable_electricity_production">3</a>, <a href="https://en.wikipedia.org/wiki/List_of_countries_by_electricity_consumption">4</a>, <a href="https://en.wikipedia.org/wiki/Lists_of_countries_by_GDP_(nominal)">5</a>)
 Notably, the US's emissions per capita are about double that of the EU and China.
-The US's emissions per capita are slightly under those Canada and the Australia.
-Some of this can be explained with GDP differences though.
-The US emits about the same per GDP as the EU, and about 30% as much as China per GDP.
+The US's emissions per capita are slightly under those of Canada and the Australia.
+Some of this can be explained with GDP differences, though.
+The US emits about the same per GDP as the EU, and about 30% as much per GDP as China.
 </p>
 
 <h2>Fusion</h2>
@@ -58,11 +47,11 @@ The fuel is most likely really cheap: deuterium from seawater, tritium "from a l
 (<a href="https://en.wikipedia.org/wiki/ITER">10</a>)
 It also has no bad byproducts.
 The main cost would be building and maintaining them.
-We have working fusion right now, problem is it uses up more power than it puts in.
+We have working fusion right now, the problem is that it uses up more power than it puts in.
 </p>
 
 <p>&emsp;
-The europeans have the biggest project going on right now, ITER.
+The Europeans have the biggest project going on right now, ITER.
 Its predecessor, JET, had a .67 power-out-to-power-in ratio.
 (<a href="https://en.wikipedia.org/wiki/Joint_European_Torus">9</a>)
 ITER's goal is to get that ratio to 5, producing 5x as much power as the amount you put in.
@@ -75,6 +64,7 @@ After ITER's done, the next step up is a full demonstration fusion power generat
 It isn't expected to be finished until 2048.
 It would output 2000 MW, meaning that we'd need about 1300 of them to power the whole world.
 </p>
+<!--TODO DEMO source-->
 
 <p>&emsp;
 Another fusion project is being done by Commonwealth Fusion.
@@ -142,6 +132,7 @@ Looking at the data, though, this seems to be pretty much false.
 </p>
 
 <h2>Batteries</h2>
+<!--TODO cringe-->
 <p>&emsp;
 Renewables tend to be inconsistent.
 The main way to fix this is getting lots of batteries.
@@ -221,9 +212,9 @@ Now for vehicles.
 Source
 (<a href="https://www.buses.org/assets/images/uploads/general/Report%20-%20Energy%20Use%20and%20Emissions.pdf">20</a>)
 lists out the greenhouse emissions for a bunch of different types of vehicles.
-Here's a screenshot version of the relevant picture in it: <a href="/pages/blog/future/climateFig1.png">link</a>.
+Here's a screenshotted version of the relevant picture in it: <a href="/pages/blog/future/climateFig1.png">link</a>.
 Note that, despite what most people seem to be saying, planes don't emit much more per passenger-mile than other sources.
-Not travelling long distances too often has a much bigger impact than not riding planes.
+Travelling long distances has a much bigger impact than riding planes.
 </p>
 
 <p>&emsp;
@@ -231,17 +222,181 @@ Finally, let's look at food.
 Source
 (<a href="https://static.ewg.org/reports/2011/meateaters/pdf/methodology_ewg_meat_eaters_guide_to_health_and_climate_2011.pdf">26</a>)
 goes in-depth about the emissions from different foods.
-Here's a screenshot of the relevant chart from it, showing the amount of CO2 created in-production and post-prodution for a bunch of different types of meats:
+Here's a screenshot of a relevant chart from it, showing the amount of CO2 created in-production and post-prodution for a bunch of different types of meats:
 <a href="/pages/blog/future/climateFig3.png">link</a>.
-<!-- I'll just cut to the chase on this one.
 Here's a chart, based on
-(<a href="https://static.ewg.org/reports/2011/meateaters/pdf/methodology_ewg_meat_eaters_guide_to_health_and_climate_2011.pdf">26</a>) and (<a href="http://thecaloriecounter.com/">27</a>),
-showing the CO2 emissions from making different types of food.
-Also mentioned in
-(<a href="https://static.ewg.org/reports/2011/meateaters/pdf/methodology_ewg_meat_eaters_guide_to_health_and_climate_2011.pdf">26</a>),
-table [#TODO], is that post-production (transporation etc.) emissions are pretty small compared to production (e.g. raising the chicken) emissions, which casts doubt on the locally-sourced movement.
--->
+(<a href="http://thecaloriecounter.com/">27</a>) and that table from (<a href="https://static.ewg.org/reports/2011/meateaters/pdf/methodology_ewg_meat_eaters_guide_to_health_and_climate_2011.pdf">26</a>),
+that shows the CO2 per calories of different foods:
 </p>
+
+<table>
+<tr>
+	<th>Food</th>
+	<th>Kg CO2e / Kg food</th>
+	<th>Calories / oz food</th>
+	<th><i>g CO2e / Calorie</i></th>
+</tr>
+<tr>
+	<th>Lamb</th>
+	<th>39.2</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1700/17005/Food.aspx">
+		189
+	</a></th>
+	<th><i>5.9</i></th>
+</tr>
+<tr>
+	<th>Beef</th>
+	<th>27.0</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1300/13316/Food.aspx">
+		80
+	</a></th>
+	<th><i>9.6</i></th>
+</tr>
+<tr>
+	<th>Cheese</th>
+	<th>13.5</th>
+	<th><a href="http://thecaloriecounter.com/Foods/100/1047/Food.aspx">
+		92
+	</a></th>
+	<th><i>4.2</i></th>
+</tr>
+<tr>
+	<th>Pork</th>
+	<th>12.1</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1000/10219/Food.aspx">
+		75
+	</a></th>
+	<th><i>4.6</i></th>
+</tr>
+<tr>
+	<th>Salmon</th>
+	<th>11.9</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1500/15236/Food.aspx">
+		52
+	</a></th>
+	<th><i>6.5</i></th>
+</tr>
+<tr>
+	<th>Turkey</th>
+	<th>10.9</th>
+	<th><a href="http://thecaloriecounter.com/Foods/500/5305/Food.aspx">
+		43
+	</a></th>
+	<th><i>7.2</i></th>
+</tr>
+<tr>
+	<th>Chicken</th>
+	<th>6.9</th>
+	<th><a href="http://thecaloriecounter.com/Foods/500/5123/Food.aspx">
+		73
+	</a></th>
+	<th><i>2.7</i></th>
+</tr>
+<tr>
+	<th>Tuna</th>
+	<th>6.1</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1500/15126/Food.aspx">
+		36
+	</a></th>
+	<th><i>4.8</i></th>
+</tr>
+<tr>
+	<th>Eggs</th>
+	<th>4.8</th>
+	<th><a href="http://thecaloriecounter.com/Foods/100/1124/Food.aspx">
+		15
+	</a></th>
+	<th><i>9.1</i></th>
+</tr>
+<tr>
+	<th>Potatoes</th>
+	<th>2.9</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1100/11352/Food.aspx">
+		22
+	</a></th>
+	<th><i>3.7</i></th>
+</tr>
+<tr>
+	<th>Rice</th>
+	<th>2.7</th>
+	<th><a href="http://thecaloriecounter.com/Foods/2000/20450/Food.aspx">
+		102
+	</a></th>
+	<th><i>0.75</i></th>
+</tr>
+<tr>
+	<th>Peanut Butter</th>
+	<th>2.5</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1600/16098/Food.aspx">
+		170
+	</a></th>
+	<th><i>0.42</i></th>
+</tr>
+<tr>
+	<th>Nuts</th>
+	<th>2.3</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1600/16087/Food.aspx">
+		161
+	</a></th>
+	<th><i>0.40</i></th>
+</tr>
+<tr>
+	<th>Yogurt</th>
+	<th>2.2</th>
+	<th><a href="http://thecaloriecounter.com/Foods/100/1117/Food.aspx">
+		18
+	</a></th>
+	<th><i>3.5</i></th>
+</tr>
+<tr>
+	<th>Broccoli</th>
+	<th>2.0</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1100/11090/Food.aspx">
+		10
+	</a></th>
+	<th><i>5.7</i></th>
+</tr>
+<tr>
+	<th>Tofu</th>
+	<th>2.0</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1600/16427/Food.aspx">
+		22
+	</a></th>
+	<th><i>2.6</i></th>
+</tr>
+<tr>
+	<th>Dry Beans</th>
+	<th>2.0</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1600/16111/Food.aspx">
+		128
+	</a></th>
+	<th><i>0.44</i></th>
+</tr>
+<tr>
+	<th>Milk (2%)</th>
+	<th>1.9</th>
+	<th><a href="http://thecaloriecounter.com/Foods/100/1079/Food.aspx">
+		14
+	</a></th>
+	<th><i>3.8</i></th>
+</tr>
+<tr>
+	<th>Tomatoes</th>
+	<th>1.1</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1100/11529/Food.aspx">
+		6
+	</a></th>
+	<th><i>5.2</i></th>
+</tr>
+<tr>
+	<th>Lentils</th>
+	<th>0.9</th>
+	<th><a href="http://thecaloriecounter.com/Foods/1600/16069/Food.aspx">
+		97
+	</a></th>
+	<th><i>0.26</i></th>
+</tr>
+</table>
 
 <h2>Sea Level Rise</h2>
 <p>&emsp;
@@ -279,10 +434,10 @@ It'll probably also result in the extinction of some species.
 </p>
 
 <p>&emsp;
-There are ways to make the outcome better, like making policy changes (which I didn't really look into) and lowering our own carbon footprints (see #carbon footprints above).
+There are ways to make the outcome better, like making policy changes (which I didn't really look into) and lowering our own carbon footprints (see Carbon Footprints above).
 </p>
 
-<h2>P.S. in Response to Michael Moore's "The Planet of the Humans"</h2>
+<h2>P.S. in Response to Michael Moore's "The Planet of the Humans"</h2> <!--TODO turn things into links-->
 <p>&emsp;
 2 big points made in the documentary were that the mining needed to make solar and wind power emit fossil fuels, and that electric cars are pointless since the electric grid uses fossil fuels.
 In response to the first here's a nice little chart showing "embodied energy" for different sources: how much energy you need to make it, as a percent of how much energy it produces.
@@ -292,13 +447,12 @@ As for the second, here's another little chart showing how much emissions are ma
 Electric cars emit less than gas cars even on the current power grid (and would emit nothing on an all-electric grid of course).
 </p>
 
-<h2>Things I Want To Look Into More</h2>
+<h2>Things I Want To Look Into More</h2> <!--TODO cringe-->
 <p>&emsp;
 This page is a work in progress.
 Some things I still want to look more closely into include:
 </p>
 <ul>
-<li>How to calculate your own carbon footprint</li>
 <li>Biofuels</li>
 <li>Nuclear power</li>
 <li>Clean coal</li>
